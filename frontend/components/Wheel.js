@@ -4,7 +4,7 @@ import { moveClockwise, moveCounterClockwise } from "../state/action-creators"
 import { connect } from 'react-redux'
 
 const Wheel = (props) => {
-  console.log("WHEEL PROPS: ", props)
+  // console.log("WHEEL PROPS: ", props)
 
 
   const handleClick = (option) => {

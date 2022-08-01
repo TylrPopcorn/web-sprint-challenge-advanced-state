@@ -6,7 +6,7 @@ import axios from 'axios'
 
 let disabled = true
 export function Form(props) {
-  console.log("FORM PROPS: ", props)
+  //console.log("FORM PROPS: ", props)
 
 
   useEffect(() => {
@@ -28,14 +28,23 @@ export function Form(props) {
     props.inputChange(evt)
   }
 
+  //console.log(props)
+
   const onSubmit = evt => {
     evt.preventDefault()
-    //   console.log(evt)
+    //console.log(evt)
+
+
+    props.postQuiz(props.form)
+
+    /*
     props.postQuiz({
       question_text: evt.target[0].value,
       true_answer_text: evt.target[1].value,
       false_answer_text: evt.target[2].value,
     })
+    */
+    //props.resetForm()
 
 
   }

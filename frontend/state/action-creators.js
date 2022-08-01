@@ -21,7 +21,9 @@ export function inputChange(payload) {
   return ({ type: "INPUT_CHANGE", payload })
 }
 
-export function resetForm() { }
+export function resetForm() {
+  return ({ type: "RESET_FORM" })
+}
 
 // ❗ Async action creators
 export function fetchQuiz() {
@@ -68,6 +70,7 @@ export function postAnswer(payload) {
       .then(res => {
         dispatch({ type: "SET_INFO_MESSAGE", payload: res.data.message })
         // console.log("SUCCESS", res)
+        dispatch(fetchQuiz())
       })
       .catch(err => {
         dispatch({ type: "SET_INFO_MESSAGE", payload: err.response.data.message })
@@ -81,15 +84,26 @@ export function postQuiz(payload) {
     // - Dispatch the correct message to the the appropriate state
     // - Dispatch the resetting of the form
     dispatch({ type: "SET_INFO_MESSAGE", payload: "" })
-    axios.post("http://localhost:9000/api/quiz/new", payload)
+    console.log(payload, "RIGHTHSGsf")
+
+
+    const newQuiz = {
+      question_text: payload.newQuestion,
+      true_answer_text: payload.newTrueAnswer,
+      false_answer_text: payload.newFalseAnswer,
+    }
+
+    axios.post("http://localhost:9000/api/quiz/new", newQuiz)
       .then(res => {
-        //console.log("SUCCESS: ", res)
-        dispatch({ type: "RESET_FORM" })
+        //  console.log("SUCCESS: ", res)
         dispatch({ type: "SET_INFO_MESSAGE", payload: `Congrats: "${res.data.question}" is a great question!` })
+        dispatch({ type: "RESET_FORM" })
+
       })
       .catch(err => {
         dispatch({ type: "SET_INFO_MESSAGE", payload: err.response.data.message })
       })
+
   }
 }
 // ❗ On promise rejections, use log statements or breakpoints, and put an appropriate error message in state

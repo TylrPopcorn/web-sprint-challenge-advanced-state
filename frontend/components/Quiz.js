@@ -6,10 +6,12 @@ import { connect } from 'react-redux'
 
 let selected = 0
 function Quiz(props) {
-  console.log("QUIZ PROPS: ", props)
+  //console.log("QUIZ PROPS: ", props)
 
   useEffect(() => {
-    props.fetchQuiz()
+    if (props.quiz.loading == true) {
+      props.fetchQuiz()
+    }
   }, [])
 
   const handleSubmit = () => {
@@ -17,7 +19,7 @@ function Quiz(props) {
       props.quiz[("answer" + selected)],
       props.quiz.quiz_id
     ])
-    props.fetchQuiz()
+    // props.fetchQuiz()
   }
 
   const handleClick = (evt) => {

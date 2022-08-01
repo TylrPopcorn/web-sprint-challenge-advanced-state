@@ -66,12 +66,12 @@ function selectedAnswer(state = initialSelectedAnswerState, action) {
   }
 }
 
-let initialMessageState = ''
+let initialMessageState = ""
 function infoMessage(state = initialMessageState, action) {
   switch (action.type) {
     case "SET_INFO_MESSAGE":
-      initialMessageState = action.payload
-      return initialMessageState
+      // console.log(action.payload)
+      return initialMessageState = action.payload
     default:
       return state
   }

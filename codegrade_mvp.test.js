@@ -231,7 +231,9 @@ describe('Advanced State Sprint Challenge Submission', () => {
       fireEvent.change(newTrueAnswerInput(), { target: { value: 'bar' } })
       fireEvent.change(newFalseAnswerInput(), { target: { value: 'baz' } })
       fireEvent.click(submitNewQuizBtn())
+
       await screen.findByText('Congrats: "foobarbaz?" is a great question!', queryOptions, waitForOptions)
+
       fireEvent.click(quizLink())
       await screen.findByText(WhatIsClosure, queryOptions, waitForOptions)
       let answerA = screen.queryByText(AFunction, queryOptions)
